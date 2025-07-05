@@ -10,13 +10,14 @@ static = "static"
 public = "docs"
 content = "content"
 template = "template.html"
+default_basepath = "/"
 
 
 def main():
-    basepath = sys.argv[1]
-    if not len(basepath):
-        basepath = "/"
-    print(basepath)
+    basepath = default_basepath
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+
     print(f"Deleting folder {public}...")
     if os.path.exists(public):
         shutil.rmtree(public)
